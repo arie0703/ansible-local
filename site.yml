@@ -1,0 +1,14 @@
+- hosts: localhost
+  gather_facts: false
+  vars:
+    base_path: ~/projects/ansible-local
+
+  tasks:
+    - name: set crontab
+      cron:
+        name: output_cache
+        minute: 0
+        hour: 5
+        day: "*"
+        month: "*"
+        job: "{{ base_path }}/scripts/get_cache.sh"
